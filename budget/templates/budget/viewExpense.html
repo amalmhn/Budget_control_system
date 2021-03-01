@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{%extends 'budget/index.html'%}
+
+{%block body_block%}
+
+<form action="" method="post">
+    {%csrf_token%}
+    {{form.as_p}}
+    <input type="submit">
+</form>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Sl no.</th>
+      <th scope="col">Cateogry</th>
+      <th scope="col">Notes</th>
+      <th scope="col">Amonut</th>
+
+        <th scope="col">Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    {%for expense in expenses%}
+    <tr>
+        <td>{{expense.id}}</td>
+        <td>{{expense.category}}</td>
+        <td>{{expense.notes}}</td>
+        <td>{{expense.amount}}</td>
+        <td>{{expense.data}}</td>
+    </tr>
+
+    {%endfor%}
+  </tbody>
+</table>
+{%endblock%}

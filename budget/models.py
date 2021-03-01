@@ -22,6 +22,8 @@ class Expense(models.Model):
     def __str__(self):
         return self.user
 
+
+
 #template inheritence
 #django user authentication(registration,login,logout)
 

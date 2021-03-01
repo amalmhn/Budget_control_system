@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
-from .forms import UserRegistrationForm
+from .forms import *
 from django.contrib.auth import authenticate, login, logout
+from .models import *
 
 
 # Create your views here.
@@ -40,4 +41,32 @@ def signin(request):
 def signout(request):
     logout(request)
     return redirect('signin')
+
+def expense_create(request):
+    form  = ExpenseCreateForm(initial={'user':request.user})
+    context = {}
+    context['form'] = form
+    if request.method == 'POST':
+        form = ExpenseCreateForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('addexpense')
+    return render(request,'budget/addExpense.html',context)
+
+def view_expense(request):
+    form = DateSearchForm()
+
+    context = {}
+    expenses = Expense.objects.filter(user=request.user)
+    context['form'] = form
+    context['expenses'] = expenses
+    if request.method=='POST':
+        form = DateSearchForm(request.POST)
+        if form.is_valid():
+            date = form.cleaned_data.get('date')
+            expenses = Expense.objects.filter(data=date,user=request.user)
+            context['expenses'] = expenses
+            return render(request, 'budget/viewExpense.html', context)
+
+    return render(request,'budget/viewExpense.html',context)
 

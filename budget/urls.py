@@ -24,5 +24,7 @@ urlpatterns = [
     path('signin', signin, name='signin'),
     path('signout', signout, name='signout'),
     path('',lambda request:render(request,'budget/index.html')),
+    path('addexpense', expense_create, name='addexpense'),
+    path('viewexpense', view_expense, name='viewexpense'),
 
 ]
