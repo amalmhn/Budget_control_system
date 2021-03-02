@@ -17,6 +17,8 @@
       <th scope="col">Amonut</th>
 
         <th scope="col">Date</th>
+        <a href="" class="btn btn-primary">Edit</a>
+        <a href="" class="btn btn-danger">Delete</a>
     </tr>
   </thead>
   <tbody>
@@ -27,6 +29,8 @@
         <td>{{expense.notes}}</td>
         <td>{{expense.amount}}</td>
         <td>{{expense.data}}</td>
+        <td><a href="{%url 'editexpense' expense.id%}" class="btn btn-primary">Edit</a></td>
+        <td><a href="{%url 'deleteexpense' expense.id%}" class="btn btn-danger">Delete</a></td>
     </tr>
 
     {%endfor%}

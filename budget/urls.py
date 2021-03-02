@@ -26,5 +26,7 @@ urlpatterns = [
     path('',lambda request:render(request,'budget/index.html')),
     path('addexpense', expense_create, name='addexpense'),
     path('viewexpense', view_expense, name='viewexpense'),
+    path('editexpense/<int:id>', edit_expense, name='editexpense'),
+    path('deleteexpense/<int:id>', delete_expense, name='deleteexpense'),
 
 ]

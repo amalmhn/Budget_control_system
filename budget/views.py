@@ -70,3 +70,25 @@ def view_expense(request):
 
     return render(request,'budget/viewExpense.html',context)
 
+def edit_expense(request,id):
+    id = Expense.objects.get(id=id)
+    form = ExpenseCreateForm(instance=id)
+    context = {}
+    context['form'] = form
+    if request.method=='POST':
+        form = ExpenseCreateForm(request.POST,instance=id)
+        if form.is_valid():
+            form.save()
+            return redirect('viewexpense')
+        else:
+            form = ExpenseCreateForm(request.POST,instance=id)
+            context = {}
+            context['form'] = form
+            return render(request,'budget/expenseEdit.html',context)
+
+    return render(request,'budget/expenseEdit.html',context)
+
+def delete_expense(request,id):
+    id = Expense.objects.get(id=id)
+    id.delete()
+    return redirect('viewexpense')

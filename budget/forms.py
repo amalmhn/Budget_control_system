@@ -16,7 +16,17 @@ class ExpenseCreateForm(ModelForm):
     class Meta:
         model = Expense
         fields = '__all__'
-
+        widgets={
+            'notes' : forms.TextInput(attrs={'class':'form-control'}),
+            'amount': forms.TextInput(attrs={'class': 'form-control'}),
+            'user': forms.TextInput(attrs={'class': 'form-control','readonly':'readonly'}),
+        }
+    def clean(self):
+        cleaned_data = super().clean()
+        amount = cleaned_data.get('amount')
+        if amount<50:
+            msg = 'Invalid Amount'
+            self.add_error('amount',msg)
 
 class DateSearchForm(forms.Form):
     date = forms.DateField(widget=forms.SelectDateWidget())
