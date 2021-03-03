@@ -13,6 +13,7 @@ class UserRegistrationForm(UserCreationForm):
 
 
 class ExpenseCreateForm(ModelForm):
+    data = forms.DateField(widget=forms.SelectDateWidget)
     class Meta:
         model = Expense
         fields = '__all__'
@@ -29,5 +30,10 @@ class ExpenseCreateForm(ModelForm):
             self.add_error('amount',msg)
 
 class DateSearchForm(forms.Form):
-    date = forms.DateField(widget=forms.SelectDateWidget())
+    date = forms.DateField(widget=forms.SelectDateWidget)
+
+class ReviewExpenseForm(forms.Form):
+    from_date = forms.DateField(widget=forms.SelectDateWidget)
+    to_date = forms.DateField(widget=forms.SelectDateWidget)
+
 

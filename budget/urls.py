@@ -28,5 +28,6 @@ urlpatterns = [
     path('viewexpense', view_expense, name='viewexpense'),
     path('editexpense/<int:id>', edit_expense, name='editexpense'),
     path('deleteexpense/<int:id>', delete_expense, name='deleteexpense'),
+    path('reviewexpense',review_expense, name='reviewexpense'),
 
 ]

@@ -17,7 +17,7 @@ class Expense(models.Model):
     notes = models.CharField(max_length=250,null=True)
     amount = models.IntegerField()
     user = models.CharField(max_length=120)
-    data = models.DateField(auto_now=True)
+    data = models.DateField()
 
     def __str__(self):
         return self.user
